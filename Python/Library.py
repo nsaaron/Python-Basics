@@ -10,15 +10,19 @@ class library:
             print(f"- {books}")
         
     def lend_book(self, book_name):
-        print("Test")
+        if book_name in self.available_books:
+            print("TEST")
         
     def return_book(book_name):
         print("Test")
     
 class User:
-    
+    def __init__(self, library):
+        self.library = library
+        
     def borrow_book(self):
-        print("Test")
+        book_name = input("Which book would you like to borrow? ")
+        self.library.lend_book(book_name)
         
     def return_book(self):
         print("Test")
@@ -26,15 +30,15 @@ class User:
      
 ##main     
 while True:        
-    libclass = library()
-    userclass = User()
+    library = library()
+    userclass = User(library)
     #testclass.displaybook()
     #print(testclass.available_books)
     #testuser.borrow_book()
     
     print("Welcome to the Library!")
     print("Available Books:")
-    for eachbook in libclass.available_books:
+    for eachbook in library.available_books:
         print("- %s" % eachbook)
     print(
         """
@@ -50,3 +54,5 @@ while True:
     
     if usel == 1:
         libclass.displaybooks()
+    elif usel == 2:
+        userclass.borrow_book()
