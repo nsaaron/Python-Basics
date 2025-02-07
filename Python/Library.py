@@ -11,10 +11,15 @@ class library:
         
     def lend_book(self, book_name):
         if book_name in self.available_books:
-            print("TEST")
+            self.available_books.remove(book_name)
+            self.borrowed_books.append(book_name)
+            print(f"You borrowed '{book_name}'. Enjoy reading!")
         
-    def return_book(book_name):
-        print("Test")
+    def return_book(self, book_name):
+        if book_name in self.borrowed_books:
+            self.borrowed_books.remove(book_name)
+            self.available_books.append(book_name)
+            print(f"Thank you for returning '{book_name}'! ")
     
 class User:
     def __init__(self, library):
@@ -25,34 +30,42 @@ class User:
         self.library.lend_book(book_name)
         
     def return_book(self):
-        print("Test")
-     
-     
-##main     
-while True:        
+        book_name = input("Which book would you like to return? ")
+        self.library.return_book(book_name)
+
+##main  
+if __name__ == "__main__":
     library = library()
-    userclass = User(library)
-    #testclass.displaybook()
-    #print(testclass.available_books)
-    #testuser.borrow_book()
-    
-    print("Welcome to the Library!")
-    print("Available Books:")
-    for eachbook in library.available_books:
-        print("- %s" % eachbook)
-    print(
-        """
-        Which would you like to do?
-        1. View availale Books
-        2. Borrow a Book
-        3. Return a Book
-        4. Exit
-        """
-        )
+    userclass = User(library) 
+   
+    while True:        
         
-    usel = int(input("Enter your choice:"))
-    
-    if usel == 1:
-        libclass.displaybooks()
-    elif usel == 2:
-        userclass.borrow_book()
+        #testclass.displaybook()
+        #print(testclass.available_books)
+        #testuser.borrow_book()
+        
+        print("Welcome to the Library!")
+        print("Available Books:")
+        for eachbook in library.available_books:
+            print("- %s" % eachbook)
+        print(
+            """
+            Which would you like to do?
+            1. View availale Books
+            2. Borrow a Book
+            3. Return a Book
+            4. Exit
+            """
+            )
+            
+        usel = int(input("Enter your choice:"))
+        
+        if usel == 1:
+            library.displaybooks()
+        elif usel == 2:
+            userclass.borrow_book()
+        elif usel == 3:
+            userclass.return_book()
+        elif usel == 4:
+            print("Goodbye!")
+            break
