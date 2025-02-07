@@ -1,3 +1,4 @@
+
 class library:
     
     def __init__(self):
@@ -10,6 +11,8 @@ class library:
             print(f"- {books}")
         
     def lend_book(self, book_name):
+        if book_name not in self.available_books:
+            print(f"{book_name} is not in the Library.")
         if book_name in self.available_books:
             self.available_books.remove(book_name)
             self.borrowed_books.append(book_name)
@@ -39,26 +42,16 @@ if __name__ == "__main__":
     userclass = User(library) 
    
     while True:        
-        
-        #testclass.displaybook()
-        #print(testclass.available_books)
-        #testuser.borrow_book()
-        
         print("Welcome to the Library!")
-        print("Available Books:")
-        for eachbook in library.available_books:
-            print("- %s" % eachbook)
-        print(
-            """
-            Which would you like to do?
-            1. View availale Books
-            2. Borrow a Book
-            3. Return a Book
-            4. Exit
-            """
-            )
-            
-        usel = int(input("Enter your choice:"))
+        library.displaybooks()
+        usel = (input("Enter your choice:"))
+        if not usel.strip():
+            print("Enter a selection")
+        else:
+            try:
+                usel = int(usel)
+            except ValueError:
+                print("Invalid Input, Enter a Number")
         
         if usel == 1:
             library.displaybooks()
