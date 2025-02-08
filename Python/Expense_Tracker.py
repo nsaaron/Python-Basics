@@ -28,9 +28,12 @@ class ExpenseTracker:
         total = sum(expense.amount for expense in self.expenseslist)  # Add the amount of each expense's amount in the list to the end total
         print(f"Expenses Total: ${total:.2f}")
        
-    def View_expenses_by_category(category):
-        print("Test")
-        
+    def View_expenses_by_category(self):
+        catfilter = input("Enter the Category to filter by: ")
+        print(f"Expenses in Category: {catfilter}")  
+        for eachitem in self.expenseslist:  # Run through the list and print out the matching category entries
+            if catfilter == eachitem.category:
+                print(f"Description: {eachitem .description}, {eachitem.amount}")
         
 ##main  
 if __name__ == "__main__":
@@ -54,7 +57,7 @@ if __name__ == "__main__":
             tracker.view_total_expenses()
             
         elif user_selection == 4:
-            print("placeholder")
+            tracker.View_expenses_by_category()
             
         elif user_selection == 5:
             break
