@@ -3,27 +3,31 @@ user_options = ["Add a new expense", "View all expenses", "View total expenses",
 class Expense:
     
     def __init__(self):
-        self.amount = 50.0
-        self.description = ""
-        self.category= "" 
+        self.description = "description"
+        self.amount = 0.1
+        self.category= "category" 
     
 class ExpenseTracker:
     
     def __init__(self):
-        self.expenses = []
+        self.expenseslist = []
         
-    def add_expense(self, expense):
-        item.description = input("Enter a Description of the expense: ")
-        item.amount = float(input("Enter the amount:"))
-        item.category = input("Enter the category:")
-        tracker.expenses.append(item)
+    def add_expense(self):
+        new_item = Expense()  # Create new item each time an expense is added
+        new_item.description = input("Enter a Description of the expense: ")
+        new_item.amount = float(input("Enter the amount:"))
+        new_item.category = input("Enter the category:")
+        self.expenseslist.append(new_item)
         
     def view_all_expenses(self):
-        print("PLACEHOLDER")
+        print("All Expenses:")
+        for expense in self.expenseslist:
+            print(f"Description: {expense.description}, {expense.amount} (Category: {expense.category}") 
         
-    def view_total_expenses():
-        print("Test")
-        
+    def view_total_expenses(self):
+        total = sum(expense.amount for expense in self.expenseslist)  # Add the amount of each expense's amount in the list to the end total
+        print(f"Expenses Total: ${total:.2f}")
+       
     def View_expenses_by_category(category):
         print("Test")
         
@@ -31,7 +35,6 @@ class ExpenseTracker:
 ##main  
 if __name__ == "__main__":
     tracker = ExpenseTracker()
-    item = Expense()
     
     while True:
         print("What would you like to do?")
@@ -42,13 +45,13 @@ if __name__ == "__main__":
         user_selection = int(input("Enter your choice:"))
         
         if user_selection == 1:
-            tracker.add_expense(item)
+            tracker.add_expense()
             
         elif user_selection == 2:
             tracker.view_all_expenses()
             
         elif user_selection == 3:
-            print("placeholder")
+            tracker.view_total_expenses()
             
         elif user_selection == 4:
             print("placeholder")
