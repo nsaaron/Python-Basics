@@ -22,13 +22,13 @@ class ExpenseTracker:
     def view_all_expenses(self):
         print("All Expenses:")
         for expense in self.expenseslist:
-            print(f"Description: {expense.description}, {expense.amount} (Category: {expense.category}") 
+            print(f"Description: {expense.description}, {expense.amount} (Category: {expense.category})") 
         
     def view_total_expenses(self):
         total = sum(expense.amount for expense in self.expenseslist)  # Add the amount of each expense's amount in the list to the end total
         print(f"Expenses Total: ${total:.2f}")
        
-    def View_expenses_by_category(self):
+    def view_expenses_by_category(self):
         catfilter = input("Enter the Category to filter by: ")
         print(f"Expenses in Category: {catfilter}")  
         for eachitem in self.expenseslist:  # Run through the list and print out the matching category entries
@@ -57,7 +57,7 @@ if __name__ == "__main__":
             tracker.view_total_expenses()
             
         elif user_selection == 4:
-            tracker.View_expenses_by_category()
+            tracker.view_expenses_by_category()
             
         elif user_selection == 5:
             break
